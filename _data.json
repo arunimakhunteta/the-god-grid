@@ -1,0 +1,19 @@
+{
+    "categories": {
+        "project_1": {
+            "name": "SAAS Differentials",
+            "color": "bg-purple-500",
+            "link": "link_to_project_1"
+        },
+        "project_2": {
+            "name": "SaaS",
+            "color": "bg-blue-500",
+            "link": "link_to_project_2"
+        }
+    },
+    "revenue": [
+        { "value": 500, "category": "project_1", "date": "2025-04-01" },
+        { "value": 300, "category": "project_1", "date": "2025-05-01" },
+        { "value": 500, "category": "project_1", "date": "2025-09-06" }
+    ]
+}
