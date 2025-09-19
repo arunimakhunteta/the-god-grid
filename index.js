@@ -25,7 +25,7 @@ fetch("./_data.json")
             }, [])
             .sort((a, b) => b.value - a.value);
 
-        generateHundredThousandDollarGrid(formattedData);
+        generateMillionDollarGrid(formattedData);
         generateRevenueBreakdown(consolidatedData);
     })
     .catch((error) => console.error("Error loading JSON:", error));
@@ -47,11 +47,11 @@ function formatValues(array) {
 
     array.forEach((item, index) => {
         let value = item.value + carryOver;
-        carryOver = value % 100;
-        let squares = Math.floor(value / 100);
+        carryOver = value % 1000;
+        let squares = Math.floor(value / 1000);
 
         if (squares > 0) {
-            result.push({ value: squares * 100, category: item.category });
+            result.push({ value: squares * 1000, category: item.category });
         }
 
         if (carryOver > 0) {
@@ -64,10 +64,10 @@ function formatValues(array) {
         (sum, value) => sum + value,
         0
     );
-    if (totalExtraCarryOver >= 100) {
-        const extraSquares = Math.floor(totalExtraCarryOver / 100);
+    if (totalExtraCarryOver >= 1000) {
+        const extraSquares = Math.floor(totalExtraCarryOver / 1000);
         result.push({
-            value: extraSquares * 100,
+            value: extraSquares * 1000,
             category: {
                 name: "Combined",
                 color: "bg-pink-500",
@@ -79,7 +79,7 @@ function formatValues(array) {
     return result;
 }
 
-function generateHundredThousandDollarGrid(data) {
+function generateMillionDollarGrid(data) {
     const totalSquares = 1000;
     const squaresData = new Array(totalSquares).fill(null);
     const categoryColors = Object.fromEntries(
@@ -88,7 +88,7 @@ function generateHundredThousandDollarGrid(data) {
 
     let currentIndex = 0;
     data.forEach((item) => {
-        const squaresCount = Math.floor(item.value / 100);
+        const squaresCount = Math.floor(item.value / 1000);
         for (let i = 0; i < squaresCount && currentIndex < totalSquares; i++) {
             squaresData[currentIndex] = item.category;
             currentIndex++;
